@@ -36,12 +36,12 @@ class Transactions extends Table {
 
 @DriftDatabase(tables: [Categories, Accounts, Transactions])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase() : super(_openConnection());
+  AppDatabase() : super(openConnection());
 
   @override
   int get schemaVersion => 1;
 
-  // CRUD helpers mínimos
+  // minimum CRUD helpers
   Future<int> insertTransaction(TransactionsCompanion entry) =>
       into(transactions).insert(entry);
   Stream<List<Transaction>> watchLatest() =>
@@ -55,7 +55,7 @@ class AppDatabase extends _$AppDatabase {
       into(categories).insert(c);
 }
 
-LazyDatabase _openConnection() {
+LazyDatabase openConnection() {
   return LazyDatabase(() async {
     final dir = await getApplicationDocumentsDirectory();
     final file = File(p.join(dir.path, 'money_manager.sqlite'));
