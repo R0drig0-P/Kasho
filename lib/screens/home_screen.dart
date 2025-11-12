@@ -10,59 +10,40 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverAppBar(
-          pinned: true,
-          title: const Text('Kasho'),
-          actions: [
-            IconButton(
-              tooltip: 'Shortcuts',
-              onPressed: () {},
-              icon: const Icon(Icons.tune),
-            ),
-          ],
-        ),
+        SliverAppBar(pinned: true, title: const Text('Kasho')),
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Card(
-                  elevation: 1,
                   child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
                           'This Month',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                          style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                         const SizedBox(height: 8),
-                        _MonthlySummary(db: db),
-                        const SizedBox(height: 8),
                         Row(
-                          children: [
-                            FilledButton.tonal(
-                              onPressed: () async {
-                                await Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (_) =>
-                                        NewTransactionScreen(db: db),
-                                  ),
-                                );
-                              },
-                              child: const Text('Add Expense'),
-                            ),
-                            const SizedBox(width: 8),
-                            OutlinedButton(
-                              onPressed: () {},
-                              child: const Text('See Report'),
-                            ),
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            _KPI(label: 'Expenses', value: '-'),
+                            _KPI(label: 'Incomes', value: '-'),
+                            _KPI(label: 'Balance', value: '-'),
                           ],
+                        ),
+                        const SizedBox(height: 8),
+                        FilledButton.tonal(
+                          onPressed: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (_) => NewTransactionScreen(db: db),
+                            ),
+                          ),
+                          child: const Text('Add Expense'),
                         ),
                       ],
                     ),
@@ -118,24 +99,6 @@ class HomeScreen extends StatelessWidget {
             );
           },
         ),
-      ],
-    );
-  }
-}
-
-class _MonthlySummary extends StatelessWidget {
-  const _MonthlySummary({required this.db});
-  final AppDatabase db;
-
-  @override
-  Widget build(BuildContext context) {
-    // Placeholder for now (calculate via query)
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
-        _KPI(label: 'Expenses', value: '—'),
-        _KPI(label: 'Income', value: '—'),
-        _KPI(label: 'Balance', value: '—'),
       ],
     );
   }

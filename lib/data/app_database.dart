@@ -53,6 +53,38 @@ class AppDatabase extends _$AppDatabase {
   Future<List<Category>> getAllCategories() => select(categories).get();
   Future<int> insertCategory(CategoriesCompanion c) =>
       into(categories).insert(c);
+
+  Stream<MonthlyKPIs> watchMonthlyKPIs({DateTime? month}) {
+    final now = DateTime.now();
+    final start = DateTime((month ?? now).year, (month ?? now).month, 1);
+    final end = DateTime(start.year, start.month + 1, 1);
+
+    final q = customSelect(
+      '''
+      SELECT
+      SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS expenses,
+      SUM(CASE WHEN type = 'income'  THEN amount ELSE 0 END) AS incomes
+    FROM transactions
+    WHERE date >= ? AND date < ?
+    ''',
+      variables: [Variable<DateTime>(start), Variable<DateTime>(end)],
+      readsFrom: {transactions},
+    ).watch();
+
+    return q.map((rows) {
+      final r = rows.isNotEmpty ? rows.first : null;
+      final exp = (r?.data['expenses'] as num?)?.toDouble() ?? 0.0;
+      final inc = (r?.data['incomes'] as num?)?.toDouble() ?? 0.0;
+      return MonthlyKPIs(expenses: exp, incomes: inc);
+    });
+  }
+}
+
+class MonthlyKPIs {
+  final double expenses;
+  final double incomes;
+  const MonthlyKPIs({required this.expenses, required this.incomes});
+  double get balance => incomes - expenses;
 }
 
 LazyDatabase openConnection() {
