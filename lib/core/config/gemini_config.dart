@@ -1,8 +1,8 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class GeminiConfig {
-  // TODO: Add your Gemini API key here
-  // Get it from: https://aistudio.google.com/apikey
-  // Since you have it free from university, use that key!
-  static const String apiKey = 'YOUR_GEMINI_API_KEY';
+  // Load from .env file for security
+  static String get apiKey => dotenv.env['GEMINI_API_KEY'] ?? '';
 
   // Model configurations
   static const String visionModel =
