@@ -22,6 +22,64 @@ Kasho is a modern, beautiful finance tracking app built with Flutter, Supabase, 
 - 📄 **PDF Import** - Import bank statements automatically
 - 💬 **Multiple Languages** - English support 
 
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK (3.35.7 or higher)
+- Dart SDK (3.9.2 or higher)
+- Supabase account (free tier works!)
+- Gemini API key (free from Google AI Studio)
+
+### Installation
+
+1. **Clone and navigate:**
+   ```bash
+   cd /home/pin4/Documents/LDTS/kasho
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Setup Supabase:**
+   - Create a project at [supabase.com](https://supabase.com)
+   - Run the SQL in `supabase/schema.sql` in your Supabase SQL editor
+   - Copy your Project URL and anon key
+   - Update `lib/core/config/supabase_config.dart`:
+     ```dart
+     static const String supabaseUrl = 'YOUR_PROJECT_URL';
+     static const String supabaseAnonKey = 'YOUR_ANON_KEY';
+     ```
+
+4. **Setup Gemini AI:**
+   - Get your API key from [AI Studio](https://aistudio.google.com/apikey)
+   - Update `lib/core/config/gemini_config.dart`:
+     ```dart
+     static const String apiKey = 'YOUR_GEMINI_API_KEY';
+     ```
+
+5. **Run the app:**
+   ```bash
+   flutter run
+   ```
+
+## 📁 Project Structure
+
+```
+lib/
+├── core/
+│   ├── theme/           # App theming (dark/light)
+│   └── config/          # Supabase & Gemini configuration
+├── features/
+│   ├── dashboard/       # Home screen
+│   ├── transactions/    # Add/view transactions
+│   └── analytics/       # Charts and insights
+└── shared/
+    ├── models/          # Data models (Transaction, Category)
+    └── widgets/         # Reusable UI components
+```
+
 ## 🎨 Design Philosophy
 
 Kasho follows modern fintech design principles:
