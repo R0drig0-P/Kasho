@@ -20,7 +20,7 @@ Kasho is a modern, beautiful finance tracking app built with Flutter, Supabase, 
 - 💬 **Financial Chatbot** - Ask questions about your spending
 - 🏦 **Bank Integration** - Auto-sync with BPI via SIBS API (PSD2)
 - 📄 **PDF Import** - Import bank statements automatically
-- 💬 **Multiple Languages** - English support 
+- 🌍 **Multiple Languages** - English support 
 
 ## 🎨 Design Philosophy
 
@@ -29,6 +29,58 @@ Kasho follows modern fintech design principles:
 - **Smooth animations** - Micro-interactions for better UX
 - **Color psychology** - Vibrant green for money/growth, clear category colors
 - **Portuguese-first** - Built for Portuguese users
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK (3.35.7 or higher)
+- Dart SDK (3.9.2 or higher)
+- Supabase account (free tier works!)
+- Gemini API key (free from Google AI Studio)
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone git@github.com:R0drig0-P/Kasho.git
+   cd Kasho
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Setup environment variables:**
+   - Copy the example file:
+     ```bash
+     cp .env.example .env
+     ```
+   - Edit `.env` and add your credentials:
+     ```bash
+     SUPABASE_URL=https://your-project.supabase.co
+     SUPABASE_ANON_KEY=your_anon_key_here
+     GEMINI_API_KEY=your_gemini_api_key_here
+     ```
+
+4. **Setup Supabase:**
+   - Create a project at [supabase.com](https://supabase.com)
+   - Go to **SQL Editor** and run the schema in `supabase/schema.sql`
+   - Get your credentials from **Project Settings > API**:
+     - **Project URL** → Add to `.env` as `SUPABASE_URL`
+     - **anon public key** → Add to `.env` as `SUPABASE_ANON_KEY`
+
+5. **Setup Gemini AI:**
+   - Get your API key from [AI Studio](https://aistudio.google.com/apikey)
+   - Add it to `.env` as `GEMINI_API_KEY`
+
+6. **Run the app:**
+   ```bash
+   flutter run
+   ```
+
+> **🔒 Security Note:** The `.env` file contains sensitive credentials and is gitignored. Never commit it to version control!
 
 ## 🔐 Privacy & Security
 
@@ -52,7 +104,7 @@ This is a personal project. If you want to use it, reach out!
 
 ## 🤝 Contributing
 
-Currently a solo project!
+Currently a personal project, but open to suggestions and feedback!
 
 ---
 
