@@ -20,7 +20,7 @@ Kasho is a modern, beautiful finance tracking app built with Flutter, Supabase, 
 - 💬 **Financial Chatbot** - Ask questions about your spending
 - 🏦 **Bank Integration** - Auto-sync with BPI via SIBS API (PSD2)
 - 📄 **PDF Import** - Import bank statements automatically
-- 💬 **Multiple Languages** - English support 
+- 🌍 **Multiple Languages** - English support 
 
 ## 🚀 Getting Started
 
